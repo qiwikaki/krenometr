@@ -1,6 +1,8 @@
 #include "comport.h"
 #include <QDebug>
 #include <QtSerialPort/QSerialPortInfo>
+#include <algorithm>
+#include <list>
 
 const double comport::K_ANG = 359.9 / 65536.0;
 

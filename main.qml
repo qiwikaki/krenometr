@@ -67,4 +67,24 @@ Window {
             //color: "steelblue"
             color: "#ffff00"
         }
+    Text {
+            id: textAmpl
+            x: 60; y:170;
+            text: "12°"
+            style: Text.Raised; styleColor: "#22202c"
+            font.family: batavia.name
+            font.pixelSize:55;
+            color: "steelblue"
+            //color: "#ffffff"
+        }
+    Text {
+            id: textPer
+            x: 60; y:490;
+            text: "17s"
+            style: Text.Raised; styleColor: "#22202c"
+            font.family: batavia.name
+            font.pixelSize:55;
+            color: "steelblue"
+            //color: "#ffffff"
+        }
 }
