@@ -3,7 +3,9 @@
         <file>main.qml</file>
         <file>handle.png</file>
         <file>scale.png</file>
+        <file>ampllefthand.png</file>
+        <file>amplrighthand.png</file>
+        <file>mainfont.png</file>
         <file>indicators.png</file>
-        <file>roll.png</file>
     </qresource>
 </RCC>

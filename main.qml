@@ -20,8 +20,14 @@ Window {
     }
     /////////// from -90 to 90 //////////
     Image {
+        id:mainfont
+        x:-200; y:-560
+        source:"mainfont.png"
+    }
+    Image {
         id:scale
-        x:-100; y:-160;
+        //x:-100; y:-160;
+        x:-200; y:-560;
         source:"scale.png"
         Connections {
             target: comport
@@ -43,33 +49,61 @@ Window {
         }
     }
     Image {
+        id:ampllefthand
+        x:-200; y:-560
+        source:"ampllefthand.png"
+        RotationAnimator {
+             target: ampllefthand;
+             from: 0.0;
+             to: 35.0;
+             duration: 5000
+             running: true
+        }
+    }
+    Image {
+        id:amplrighthand
+        x:-200; y:-560
+        source:"amplrighthand.png"
+        RotationAnimator {
+             target: amplrighthand;
+             from: 0.0;
+             to: -20.0;
+             duration: 5000
+             running: true
+        }
+    }
+    Image {
         id:handle
-        x:-100; y:-160
+        x:-200; y:-560
         source:"handle.png"
     }
     Image {
-        id:roll
-        x:-100; y:-160
-        source:"roll.png"
-    }
-    Image {
         id:indicators
-        x:-100; y:-160
+        x:-100; y:-360
         source:"indicators.png"
     }
     Text {
             id: textRoll
-            x: 355; y:210;
+            x: 345; y:420;
             text: comport.msg
-            style: Text.Raised; styleColor: "#22202c"
+            style: Text.Raised
             font.family: batavia.name
-            font.pixelSize:42;
+            font.pixelSize:50;
             //color: "steelblue"
             color: "#ffff00"
         }
     Text {
+            id: angle
+            x: 450; y:402;
+            text: "°"
+            style: Text.Raised
+            font.family: batavia.name
+            font.pixelSize:55;
+            color: "#ffff00"
+        }
+    Text {
             id: textAmpl
-            x: 60; y:170;
+            x: 660; y:450;
             text: "12°"
             style: Text.Raised; styleColor: "#22202c"
             font.family: batavia.name
@@ -79,7 +113,7 @@ Window {
         }
     Text {
             id: textPer
-            x: 60; y:490;
+            x: 60; y:450;
             text: "17s"
             style: Text.Raised; styleColor: "#22202c"
             font.family: batavia.name
