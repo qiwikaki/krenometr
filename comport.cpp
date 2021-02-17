@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <list>
 
+
 const double comport::K_ANG = 359.9 / 65536.0;
 
 const QByteArray comport::SOP1 = QByteArray::fromHex("0d");
@@ -39,8 +40,14 @@ comport::~comport() {
     serial->close();
     delete serial;
 }
-QString comport::msg() {
+/*QString comport::msg() {
     return m_msg;
+}*/
+QString comport::rollmsg() {
+    return m_rollmsg;
+}
+QString comport::pitchmsg() {
+    return m_pitchmsg;
 }
 void comport::receiveMessageFromUSART() {
     //static int index = 0;
@@ -116,6 +123,7 @@ void comport::defineMessageType(int msgid)
 void comport::handleMessageDorient()
 {
     QString p_roll;
+    QString p_pitch;
     QByteArray data = m_message;
 
     if (data.size() < 18) {
@@ -125,24 +133,45 @@ void comport::handleMessageDorient()
     double roll = QString::number((short)((data.at(1) << 8) + (data.at(0))) * K_ANG, 10, 1).toDouble();
     double pitch = QString::number((short)((data.at(3) << 8) + (data.at(2))) * K_ANG, 10, 1).toDouble();
     double azimuth = QString::number((unsigned short)((data.at(5) << 8) + (data.at(4))) * K_ANG, 10, 1).toDouble();
-    qDebug() << roll;
+    //qDebug() << roll;
 
     QList<double> res;
+    QList<double> tabroll{roll};
+    //tabroll << roll;
+    qDebug() << *std::max_element(tabroll.begin(),tabroll.end());
+
     res << roll << pitch << azimuth;
-    p_roll = "---.-";
+    p_pitch = QString::number(pitch, 'f', 1).rightJustified(4, '0');
+
+    //p_roll = "---.-";
     if (roll >= 0) {
         p_roll = QString::number(roll, 'f', 1).rightJustified(4, '0').leftJustified(5, '+');
     } else {
         p_roll = QString::number(roll*(-1), 'f', 1).rightJustified(4,'0').rightJustified(5, '-');
     }
-    emit setMsg(p_roll);
+    //emit setMsg(p_roll);
+    emit setRoll(p_roll);
+    emit setPitch(p_pitch);
     emit rotationUpdate(roll);
     //emit dataRecieved(res);
 }
 
-void comport::setMsg(const QString &msg) {
+/*void comport::setMsg(const QString &msg) {
     if(m_msg == msg)
         return;
     m_msg = msg;
     emit msgChanged();
+}*/
+
+void comport::setRoll(const QString &rollmsg) {
+    if(m_rollmsg == rollmsg)
+        return;
+    m_rollmsg = rollmsg;
+    emit rollChanged();
+}
+void comport::setPitch(const QString &pitchmsg) {
+    if(m_pitchmsg == pitchmsg)
+        return;
+    m_pitchmsg = pitchmsg;
+    emit pitchChanged();
 }

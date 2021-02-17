@@ -27,7 +27,7 @@ Window {
     Image {
         id:scale
         //x:-100; y:-160;
-        x:-200; y:-560;
+        x:-250; y:-610;
         source:"scale.png"
         Connections {
             target: comport
@@ -42,15 +42,15 @@ Window {
             origin.y: scale.height / 2
             Behavior on angle {
                 SpringAnimation {
-                    spring: 1.5
-                    damping: 0.8
+                    spring: 1.9
+                    damping: 0.5
                 }
             }
         }
     }
     Image {
         id:ampllefthand
-        x:-200; y:-560
+        x:-250; y:-610;
         source:"ampllefthand.png"
         RotationAnimator {
              target: ampllefthand;
@@ -62,7 +62,7 @@ Window {
     }
     Image {
         id:amplrighthand
-        x:-200; y:-560
+        x:-250; y:-610;
         source:"amplrighthand.png"
         RotationAnimator {
              target: amplrighthand;
@@ -74,7 +74,7 @@ Window {
     }
     Image {
         id:handle
-        x:-200; y:-560
+        x:-250; y:-610
         source:"handle.png"
     }
     Image {
@@ -82,43 +82,83 @@ Window {
         x:-100; y:-360
         source:"indicators.png"
     }
+    Image {
+        id:ampl
+        x:-250; y:-610
+        source:"ampl.png"
+    }
+    Image {
+        id:charging
+        x:-250; y:-610
+        source:"charging.png"
+    }
     Text {
             id: textRoll
-            x: 345; y:420;
-            text: comport.msg
+            x: 300; y:390;
+            text: comport.rollmsg
             style: Text.Raised
             font.family: batavia.name
-            font.pixelSize:50;
+            font.pixelSize:80;
             //color: "steelblue"
             color: "#ffff00"
         }
     Text {
+            id: textPitch
+            x: 370; y:547;
+            text: comport.pitchmsg
+            style: Text.Raised
+            font.family: batavia.name
+            font.pixelSize:30;
+            //color: "steelblue"
+            color: "#ffffff"
+        }
+    Text {
             id: angle
-            x: 450; y:402;
+            x: 460; y:380;
             text: "°"
             style: Text.Raised
             font.family: batavia.name
-            font.pixelSize:55;
+            font.pixelSize:60;
             color: "#ffff00"
         }
     Text {
-            id: textAmpl
-            x: 660; y:450;
+            id: textRollAlarm
+            x: 660; y:500;
             text: "12°"
             style: Text.Raised; styleColor: "#22202c"
             font.family: batavia.name
-            font.pixelSize:55;
-            color: "steelblue"
-            //color: "#ffffff"
+            font.pixelSize:50;
+            //color: "steelblue"
+            color: "#ffffff"
         }
     Text {
             id: textPer
-            x: 60; y:450;
+            x: 65; y:500;
             text: "17s"
             style: Text.Raised; styleColor: "#22202c"
             font.family: batavia.name
-            font.pixelSize:55;
-            color: "steelblue"
-            //color: "#ffffff"
+            font.pixelSize:50;
+            //color: "steelblue"
+            color: "#ffffff"
+        }
+    Text {
+            id: textLeftAmpl
+            x: 40; y:180;
+            text: "35°"
+            style: Text.Raised; styleColor: "#22202c"
+            font.family: batavia.name
+            font.pixelSize:25;
+            //color: "steelblue"
+            color: "#ffffff"
+        }
+    Text {
+            id: textRightAmpl
+            x: 730; y:180;
+            text: "20°"
+            style: Text.Raised; styleColor: "#22202c"
+            font.family: batavia.name
+            font.pixelSize:25;
+            //color: "steelblue"
+            color: "#ffffff"
         }
 }

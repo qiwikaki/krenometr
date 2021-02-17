@@ -8,13 +8,18 @@
 class comport : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString msg READ msg WRITE setMsg NOTIFY msgChanged)
+    //Q_PROPERTY(QString msg READ msg WRITE setMsg NOTIFY msgChanged)
+    Q_PROPERTY(QString rollmsg READ rollmsg WRITE setRoll NOTIFY rollChanged)
+    Q_PROPERTY(QString pitchmsg READ pitchmsg WRITE setPitch NOTIFY pitchChanged)
+
     Q_ENUMS(MsgId)
 
 public:
     explicit comport(QObject *parent = 0);
     ~comport();
-    QString msg();
+    //QString msg();
+    QString rollmsg();
+    QString pitchmsg();
     static const int T_REQ;
     static const QByteArray SOP1, SOP2, SOP3;
     static const double K_ANG;
@@ -24,15 +29,22 @@ public:
 private:
     QSerialPort *serial;
     QByteArray m_message;
-    QString m_msg;
+    //QString m_msg;
+    QString m_rollmsg;
+    QString m_pitchmsg;
+
 private slots:
     void receiveMessageFromUSART();
     void defineMessageType(int msgid);
     void handleMessageDorient();
-    void setMsg(const QString &msg);
+    //void setMsg(const QString &msg);
+    void setRoll(const QString &rollmsg);
+    void setPitch(const QString &pitchmsg);
 
 signals:
-    void msgChanged();
+    //void msgChanged();
+    void rollChanged();
+    void pitchChanged();
     //new file(krenometr)//
     void rotationUpdate(double angle);
     //void dataRecieved(QList<double> data);

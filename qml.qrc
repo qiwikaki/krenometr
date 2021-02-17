@@ -7,5 +7,7 @@
         <file>amplrighthand.png</file>
         <file>mainfont.png</file>
         <file>indicators.png</file>
+        <file>ampl.png</file>
+        <file>charging.png</file>
     </qresource>
 </RCC>
