@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>ampl.png</file>
+        <file>ampllefthand.png</file>
+        <file>amplrighthand.png</file>
+        <file>charging.png</file>
+        <file>font.png</file>
+        <file>handle.png</file>
+        <file>indicators.png</file>
+        <file>scale.png</file>
+    </qresource>
+</RCC>

@@ -13,10 +13,12 @@ const QByteArray comport::SOP3 = QByteArray::fromHex("7e");
 
 const int comport::T_REQ = 1000;
 
+
 comport::comport(QObject *parent):
     QObject(parent)
 {
     serial = new QSerialPort(this);
+    //serial->setPortName("/dev/ttyUSB1");
     serial->setPortName("COM13");
     serial->setBaudRate(QSerialPort::Baud9600);
     serial->setDataBits(QSerialPort::Data8);
@@ -48,6 +50,15 @@ QString comport::rollmsg() {
 }
 QString comport::pitchmsg() {
     return m_pitchmsg;
+}
+QString comport::maxrollmsg() {
+    return m_maxrollmsg;
+}
+QString comport::minrollmsg() {
+    return m_minrollmsg;
+}
+double comport::testmin_msg() {
+    return m_testmin_msg;
 }
 void comport::receiveMessageFromUSART() {
     //static int index = 0;
@@ -124,6 +135,8 @@ void comport::handleMessageDorient()
 {
     QString p_roll;
     QString p_pitch;
+    QString pmax_roll;
+    QString pmin_roll;
     QByteArray data = m_message;
 
     if (data.size() < 18) {
@@ -136,24 +149,44 @@ void comport::handleMessageDorient()
     //qDebug() << roll;
 
     QList<double> res;
-    QList<double> tabroll{roll};
+
+    //QList<double> tabroll{1,2,3,4,500,100};
+   /* QList<double> tabroll;
+    tabroll.append(roll);*/
     //tabroll << roll;
-    qDebug() << *std::max_element(tabroll.begin(),tabroll.end());
 
     res << roll << pitch << azimuth;
     p_pitch = QString::number(pitch, 'f', 1).rightJustified(4, '0');
-
     //p_roll = "---.-";
-    if (roll >= 0) {
+    if (roll >= 0.0) {
         p_roll = QString::number(roll, 'f', 1).rightJustified(4, '0').leftJustified(5, '+');
+        //qDebug() << max_roll;
+        if (max_roll < roll) {
+            max_roll = roll;
+            pmax_roll = QString::number(max_roll, 'f', 1);
+            qDebug() << pmax_roll;
+            min_roll = 1.0;    /* KAK ETO RABOTAET???*/
+            setMaxroll(pmax_roll);
+            //emit maxRollChanged(max_roll);
+        }
     } else {
         p_roll = QString::number(roll*(-1), 'f', 1).rightJustified(4,'0').rightJustified(5, '-');
+        if (min_roll > roll) {
+            min_roll = roll;
+            pmin_roll = QString::number(min_roll, 'f', 1);
+            settestmin(min_roll);
+            qDebug() << pmin_roll;
+            max_roll = 1.0;   /* KAK ETO RABOTAET???*/
+            setMinroll(pmin_roll);
+            emit minRollChanged(min_roll);
+        }
     }
     //emit setMsg(p_roll);
-    emit setRoll(p_roll);
-    emit setPitch(p_pitch);
+    setRoll(p_roll);
+    setPitch(p_pitch);
     emit rotationUpdate(roll);
     //emit dataRecieved(res);
+    //qDebug() << *std::max_element(tabroll.begin(),tabroll.end());
 }
 
 /*void comport::setMsg(const QString &msg) {
@@ -174,4 +207,22 @@ void comport::setPitch(const QString &pitchmsg) {
         return;
     m_pitchmsg = pitchmsg;
     emit pitchChanged();
+}
+void comport::setMaxroll(const QString &maxrollmsg) {
+    if(m_maxrollmsg == maxrollmsg)
+        return;
+    m_maxrollmsg = maxrollmsg;
+    emit maxRoll();
+}
+void comport::setMinroll(const QString &minrollmsg) {
+    if(m_minrollmsg == minrollmsg)
+        return;
+    m_minrollmsg = minrollmsg;
+    emit minRoll();
+}
+void comport::settestmin(const double &testmin_msg) {
+    if(m_testmin_msg == testmin_msg)
+        return;
+    m_testmin_msg = testmin_msg;
+    emit testmin();
 }

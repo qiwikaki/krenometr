@@ -19,11 +19,11 @@ Window {
         source: "font/Corporate.ttf"
     }
     /////////// from -90 to 90 //////////
-    Image {
-        id:mainfont
+    /*Image {
+        id:font
         x:-200; y:-560
-        source:"mainfont.png"
-    }
+        source:"font.png"
+    }*/
     Image {
         id:scale
         //x:-100; y:-160;
@@ -52,26 +52,51 @@ Window {
         id:ampllefthand
         x:-250; y:-610;
         source:"ampllefthand.png"
-        RotationAnimator {
-             target: ampllefthand;
-             from: 0.0;
-             to: 35.0;
-             duration: 5000
-             running: true
+        Connections {
+            target: comport
+            onRotationUpdate: {
+               rotationMin.angle = angle
+            }
+            /*onMinRollChanged: {
+                rotationMin.angle = angle //+ comport.minRoll
+            }*/
+        }
+        transform: Rotation {
+            id: rotationMin
+            angle: 90
+            origin.x: scale.width / 2
+            origin.y: scale.height / 2
+            Behavior on angle {
+                SpringAnimation {
+                    spring: 1.9
+                    damping: 0.5
+                }
+            }
         }
     }
-    Image {
+    /*Image {
         id:amplrighthand
         x:-250; y:-610;
         source:"amplrighthand.png"
-        RotationAnimator {
-             target: amplrighthand;
-             from: 0.0;
-             to: -20.0;
-             duration: 5000
-             running: true
+        Connections {
+            target: comport
+            onRotationUpdate: {
+               rotationMax.angle = angle
+            }
         }
-    }
+        transform: Rotation {
+            id: rotationMax
+            angle: 0
+            origin.x: scale.width / 2
+            origin.y: scale.height / 2
+            Behavior on angle {
+                SpringAnimation {
+                    spring: 1.9
+                    damping: 0.5
+                }
+            }
+        }
+    }*/
     Image {
         id:handle
         x:-250; y:-610
@@ -144,8 +169,8 @@ Window {
     Text {
             id: textLeftAmpl
             x: 40; y:180;
-            text: "35°"
-            style: Text.Raised; styleColor: "#22202c"
+            text: comport.minrollmsg
+            style: Text.Raised;
             font.family: batavia.name
             font.pixelSize:25;
             //color: "steelblue"
@@ -154,8 +179,8 @@ Window {
     Text {
             id: textRightAmpl
             x: 730; y:180;
-            text: "20°"
-            style: Text.Raised; styleColor: "#22202c"
+            text: comport.maxrollmsg
+            style: Text.Raised;
             font.family: batavia.name
             font.pixelSize:25;
             //color: "steelblue"
