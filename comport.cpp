@@ -3,7 +3,13 @@
 #include <QtSerialPort/QSerialPortInfo>
 #include <algorithm>
 #include <list>
+#include <QTimer>
 
+#ifndef DESKTOP_X64
+    const QString comport::PORT_NAME = "COM13";
+#else
+    const QString comport::PORT_NAME = "ttyUSB1";
+#endif
 
 const double comport::K_ANG = 359.9 / 65536.0;
 
@@ -12,14 +18,21 @@ const QByteArray comport::SOP2 = QByteArray::fromHex("0a");
 const QByteArray comport::SOP3 = QByteArray::fromHex("7e");
 
 const int comport::T_REQ = 1000;
-
+bool p_right;
+bool p_left;
 
 comport::comport(QObject *parent):
     QObject(parent)
 {
-    serial = new QSerialPort(this);
+    QTimer *timer = new QTimer(this);
+    timer->setInterval(1);
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateTime()));
+    timer->start();
+
+    serial = new QSerialPort(PORT_NAME, this);
+
     //serial->setPortName("/dev/ttyUSB1");
-    serial->setPortName("COM13");
+    //serial->setPortName("COM13");
     serial->setBaudRate(QSerialPort::Baud9600);
     serial->setDataBits(QSerialPort::Data8);
     serial->setParity(QSerialPort::NoParity);
@@ -41,6 +54,7 @@ comport::comport(QObject *parent):
 comport::~comport() {
     serial->close();
     delete serial;
+    delete timer;
 }
 /*QString comport::msg() {
     return m_msg;
@@ -57,8 +71,45 @@ QString comport::maxrollmsg() {
 QString comport::minrollmsg() {
     return m_minrollmsg;
 }
+QString comport::periodmsg() {
+    return m_periodmsg;
+}
 double comport::testmin_msg() {
     return m_testmin_msg;
+}
+double comport::testmax_msg() {
+    return m_testmax_msg;
+}
+void comport::updateTime() {
+    static double rightBoard = 0;
+    static double leftBoard = 0;
+    static double pmax_rightBoard;
+    static double pmax_leftBoard;
+    QString period;
+
+    if (p_right) {
+        pmax_leftBoard = 0;
+        rightBoard++;
+        if (pmax_rightBoard < rightBoard) {
+            pmax_rightBoard = rightBoard;
+            period = QString::number(pmax_rightBoard/1000, 'f', 1);
+        }
+    } else rightBoard = 0;
+    if (p_left) {
+        pmax_rightBoard = 0;
+        leftBoard++;
+        if (pmax_leftBoard < leftBoard) {
+            pmax_leftBoard = leftBoard;
+            period = QString::number(pmax_leftBoard/1000, 'f', 1);
+        }
+    } else leftBoard = 0;
+
+    setPeriod(period);
+
+    qDebug() << period;
+    //qDebug() << pmax_leftBoard;
+
+    //qDebug() << leftBoard;
 }
 void comport::receiveMessageFromUSART() {
     //static int index = 0;
@@ -159,26 +210,31 @@ void comport::handleMessageDorient()
     p_pitch = QString::number(pitch, 'f', 1).rightJustified(4, '0');
     //p_roll = "---.-";
     if (roll >= 0.0) {
+        p_right = 1;
+        p_left = 0;
         p_roll = QString::number(roll, 'f', 1).rightJustified(4, '0').leftJustified(5, '+');
         //qDebug() << max_roll;
         if (max_roll < roll) {
             max_roll = roll;
             pmax_roll = QString::number(max_roll, 'f', 1);
-            qDebug() << pmax_roll;
+            settestmax(max_roll);
+            //qDebug() << pmax_roll;
             min_roll = 1.0;    /* KAK ETO RABOTAET???*/
             setMaxroll(pmax_roll);
             //emit maxRollChanged(max_roll);
         }
     } else {
+        p_right = 0;
+        p_left = 1;
         p_roll = QString::number(roll*(-1), 'f', 1).rightJustified(4,'0').rightJustified(5, '-');
         if (min_roll > roll) {
             min_roll = roll;
             pmin_roll = QString::number(min_roll, 'f', 1);
             settestmin(min_roll);
-            qDebug() << pmin_roll;
+            //qDebug() << pmin_roll;
             max_roll = 1.0;   /* KAK ETO RABOTAET???*/
             setMinroll(pmin_roll);
-            emit minRollChanged(min_roll);
+            //emit minRollChanged(min_roll);
         }
     }
     //emit setMsg(p_roll);
@@ -220,9 +276,21 @@ void comport::setMinroll(const QString &minrollmsg) {
     m_minrollmsg = minrollmsg;
     emit minRoll();
 }
+void comport::setPeriod(const QString &periodmsg) {
+    if(m_periodmsg == periodmsg)
+        return;
+    m_periodmsg = periodmsg;
+    emit periodChanged();
+}
 void comport::settestmin(const double &testmin_msg) {
     if(m_testmin_msg == testmin_msg)
         return;
     m_testmin_msg = testmin_msg;
     emit testmin();
+}
+void comport::settestmax(const double &testmax_msg) {
+    if(m_testmax_msg == testmax_msg)
+        return;
+    m_testmax_msg = testmax_msg;
+    emit testmax();
 }

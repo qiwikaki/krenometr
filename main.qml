@@ -55,15 +55,13 @@ Window {
         Connections {
             target: comport
             onRotationUpdate: {
-               rotationMin.angle = angle
+               rotationMin.angle = angle - comport.testmin_msg
+                //console.log(angle)
             }
-            /*onMinRollChanged: {
-                rotationMin.angle = angle //+ comport.minRoll
-            }*/
         }
         transform: Rotation {
             id: rotationMin
-            angle: 90
+            angle: 0
             origin.x: scale.width / 2
             origin.y: scale.height / 2
             Behavior on angle {
@@ -74,14 +72,14 @@ Window {
             }
         }
     }
-    /*Image {
+    Image {
         id:amplrighthand
         x:-250; y:-610;
         source:"amplrighthand.png"
         Connections {
             target: comport
             onRotationUpdate: {
-               rotationMax.angle = angle
+               rotationMax.angle = angle - comport.testmax_msg
             }
         }
         transform: Rotation {
@@ -96,7 +94,7 @@ Window {
                 }
             }
         }
-    }*/
+    }
     Image {
         id:handle
         x:-250; y:-610
@@ -109,7 +107,7 @@ Window {
     }
     Image {
         id:ampl
-        x:-250; y:-610
+        x:-250; y:-600
         source:"ampl.png"
     }
     Image {
@@ -157,9 +155,9 @@ Window {
             color: "#ffffff"
         }
     Text {
-            id: textPer
+            id: textPerR
             x: 65; y:500;
-            text: "17s"
+            text: comport.periodmsg
             style: Text.Raised; styleColor: "#22202c"
             font.family: batavia.name
             font.pixelSize:50;
@@ -168,7 +166,7 @@ Window {
         }
     Text {
             id: textLeftAmpl
-            x: 40; y:180;
+            x: 35; y:190;
             text: comport.minrollmsg
             style: Text.Raised;
             font.family: batavia.name
@@ -178,7 +176,7 @@ Window {
         }
     Text {
             id: textRightAmpl
-            x: 730; y:180;
+            x: 730; y:190;
             text: comport.maxrollmsg
             style: Text.Raised;
             font.family: batavia.name
