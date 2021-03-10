@@ -8,5 +8,7 @@
         <file>handle.png</file>
         <file>indicators.png</file>
         <file>scale.png</file>
+        <file>peaklefthand.png</file>
+        <file>peakrighthand.png</file>
     </qresource>
 </RCC>

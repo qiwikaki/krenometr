@@ -42,8 +42,8 @@ Window {
             origin.y: scale.height / 2
             Behavior on angle {
                 SpringAnimation {
-                    spring: 1.9
-                    damping: 0.5
+                    spring: 2
+                    damping: 0.3
                 }
             }
         }
@@ -66,8 +66,8 @@ Window {
             origin.y: scale.height / 2
             Behavior on angle {
                 SpringAnimation {
-                    spring: 1.9
-                    damping: 0.5
+                    spring: 2
+                    damping: 0.3
                 }
             }
         }
@@ -89,8 +89,55 @@ Window {
             origin.y: scale.height / 2
             Behavior on angle {
                 SpringAnimation {
-                    spring: 1.9
-                    damping: 0.5
+                    spring: 2
+                    damping: 0.3
+                }
+            }
+        }
+    }
+    Image {
+        id:peaklefthand
+        x:-250; y:-610;
+        source:"peaklefthand.png"
+        Connections {
+            target: comport
+            onRotationUpdate: {
+               rotationPeakMin.angle = angle - comport.peak_min_msg
+                //console.log(angle)
+            }
+        }
+        transform: Rotation {
+            id: rotationPeakMin
+            angle: 0
+            origin.x: scale.width / 2
+            origin.y: scale.height / 2
+            Behavior on angle {
+                SpringAnimation {
+                    spring: 2
+                    damping: 0.3
+                }
+            }
+        }
+    }
+    Image {
+        id:peakrighthand
+        x:-250; y:-610;
+        source:"peakrighthand.png"
+        Connections {
+            target: comport
+            onRotationUpdate: {
+               rotationPeakMax.angle = angle - comport.peak_max_msg
+            }
+        }
+        transform: Rotation {
+            id: rotationPeakMax
+            angle: 0
+            origin.x: scale.width / 2
+            origin.y: scale.height / 2
+            Behavior on angle {
+                SpringAnimation {
+                    spring: 2
+                    damping: 0.3
                 }
             }
         }
@@ -166,22 +213,42 @@ Window {
         }
     Text {
             id: textLeftAmpl
-            x: 35; y:190;
+            x: 35; y:100;
             text: comport.minrollmsg
             style: Text.Raised;
             font.family: batavia.name
-            font.pixelSize:25;
+            font.pixelSize:20;
             //color: "steelblue"
             color: "#ffffff"
         }
     Text {
             id: textRightAmpl
-            x: 730; y:190;
+            x: 730; y:100;
             text: comport.maxrollmsg
             style: Text.Raised;
             font.family: batavia.name
-            font.pixelSize:25;
+            font.pixelSize:20;
             //color: "steelblue"
             color: "#ffffff"
+        }
+    Text {
+            id: textLeftPeak
+            x: 35; y:340;
+            text: comport.peakminmsgtext
+            style: Text.Raised;
+            font.family: batavia.name
+            font.pixelSize:20;
+            //color: "steelblue"
+            color: "#d40244"
+        }
+    Text {
+            id: textRightPeak
+            x: 730; y:340;
+            text: comport.peakmaxmsgtext
+            style: Text.Raised;
+            font.family: batavia.name
+            font.pixelSize:20;
+            //color: "steelblue"
+            color: "#01d444"
         }
 }

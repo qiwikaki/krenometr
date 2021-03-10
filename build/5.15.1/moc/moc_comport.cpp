@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_comport_t {
-    QByteArrayData data[34];
-    char stringdata0[369];
+    QByteArrayData data[46];
+    char stringdata0[519];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,46 +38,62 @@ QT_MOC_LITERAL(2, 20, 0), // ""
 QT_MOC_LITERAL(3, 21, 12), // "pitchChanged"
 QT_MOC_LITERAL(4, 34, 7), // "maxRoll"
 QT_MOC_LITERAL(5, 42, 7), // "minRoll"
-QT_MOC_LITERAL(6, 50, 13), // "periodChanged"
-QT_MOC_LITERAL(7, 64, 14), // "rotationUpdate"
-QT_MOC_LITERAL(8, 79, 5), // "angle"
-QT_MOC_LITERAL(9, 85, 14), // "maxRollChanged"
-QT_MOC_LITERAL(10, 100, 14), // "minRollChanged"
-QT_MOC_LITERAL(11, 115, 7), // "testmin"
-QT_MOC_LITERAL(12, 123, 7), // "testmax"
-QT_MOC_LITERAL(13, 131, 23), // "receiveMessageFromUSART"
-QT_MOC_LITERAL(14, 155, 17), // "defineMessageType"
-QT_MOC_LITERAL(15, 173, 5), // "msgid"
-QT_MOC_LITERAL(16, 179, 20), // "handleMessageDorient"
-QT_MOC_LITERAL(17, 200, 7), // "setRoll"
-QT_MOC_LITERAL(18, 208, 7), // "rollmsg"
-QT_MOC_LITERAL(19, 216, 8), // "setPitch"
-QT_MOC_LITERAL(20, 225, 8), // "pitchmsg"
-QT_MOC_LITERAL(21, 234, 10), // "setMaxroll"
-QT_MOC_LITERAL(22, 245, 10), // "maxrollmsg"
-QT_MOC_LITERAL(23, 256, 10), // "setMinroll"
-QT_MOC_LITERAL(24, 267, 10), // "minrollmsg"
-QT_MOC_LITERAL(25, 278, 9), // "setPeriod"
-QT_MOC_LITERAL(26, 288, 9), // "periodmsg"
-QT_MOC_LITERAL(27, 298, 10), // "settestmin"
-QT_MOC_LITERAL(28, 309, 11), // "testmin_msg"
-QT_MOC_LITERAL(29, 321, 10), // "settestmax"
-QT_MOC_LITERAL(30, 332, 10), // "updateTime"
-QT_MOC_LITERAL(31, 343, 11), // "testmax_msg"
-QT_MOC_LITERAL(32, 355, 5), // "MsgId"
-QT_MOC_LITERAL(33, 361, 7) // "DORIENT"
+QT_MOC_LITERAL(6, 50, 11), // "maxPeakText"
+QT_MOC_LITERAL(7, 62, 11), // "minPeakText"
+QT_MOC_LITERAL(8, 74, 13), // "periodChanged"
+QT_MOC_LITERAL(9, 88, 14), // "rotationUpdate"
+QT_MOC_LITERAL(10, 103, 5), // "angle"
+QT_MOC_LITERAL(11, 109, 14), // "maxRollChanged"
+QT_MOC_LITERAL(12, 124, 14), // "minRollChanged"
+QT_MOC_LITERAL(13, 139, 7), // "testmin"
+QT_MOC_LITERAL(14, 147, 7), // "testmax"
+QT_MOC_LITERAL(15, 155, 8), // "peak_min"
+QT_MOC_LITERAL(16, 164, 8), // "peak_max"
+QT_MOC_LITERAL(17, 173, 23), // "receiveMessageFromUSART"
+QT_MOC_LITERAL(18, 197, 17), // "defineMessageType"
+QT_MOC_LITERAL(19, 215, 5), // "msgid"
+QT_MOC_LITERAL(20, 221, 20), // "handleMessageDorient"
+QT_MOC_LITERAL(21, 242, 7), // "setRoll"
+QT_MOC_LITERAL(22, 250, 7), // "rollmsg"
+QT_MOC_LITERAL(23, 258, 8), // "setPitch"
+QT_MOC_LITERAL(24, 267, 8), // "pitchmsg"
+QT_MOC_LITERAL(25, 276, 10), // "setMaxroll"
+QT_MOC_LITERAL(26, 287, 10), // "maxrollmsg"
+QT_MOC_LITERAL(27, 298, 10), // "setMinroll"
+QT_MOC_LITERAL(28, 309, 10), // "minrollmsg"
+QT_MOC_LITERAL(29, 320, 14), // "setPeakMaxText"
+QT_MOC_LITERAL(30, 335, 14), // "peakmaxmsgtext"
+QT_MOC_LITERAL(31, 350, 14), // "setPeakMinText"
+QT_MOC_LITERAL(32, 365, 14), // "peakminmsgtext"
+QT_MOC_LITERAL(33, 380, 9), // "setPeriod"
+QT_MOC_LITERAL(34, 390, 9), // "periodmsg"
+QT_MOC_LITERAL(35, 400, 10), // "settestmin"
+QT_MOC_LITERAL(36, 411, 11), // "testmin_msg"
+QT_MOC_LITERAL(37, 423, 10), // "settestmax"
+QT_MOC_LITERAL(38, 434, 10), // "setPeakMin"
+QT_MOC_LITERAL(39, 445, 12), // "peak_min_msg"
+QT_MOC_LITERAL(40, 458, 10), // "setPeakMax"
+QT_MOC_LITERAL(41, 469, 12), // "peak_max_msg"
+QT_MOC_LITERAL(42, 482, 10), // "updateTime"
+QT_MOC_LITERAL(43, 493, 11), // "testmax_msg"
+QT_MOC_LITERAL(44, 505, 5), // "MsgId"
+QT_MOC_LITERAL(45, 511, 7) // "DORIENT"
 
     },
     "comport\0rollChanged\0\0pitchChanged\0"
-    "maxRoll\0minRoll\0periodChanged\0"
-    "rotationUpdate\0angle\0maxRollChanged\0"
-    "minRollChanged\0testmin\0testmax\0"
+    "maxRoll\0minRoll\0maxPeakText\0minPeakText\0"
+    "periodChanged\0rotationUpdate\0angle\0"
+    "maxRollChanged\0minRollChanged\0testmin\0"
+    "testmax\0peak_min\0peak_max\0"
     "receiveMessageFromUSART\0defineMessageType\0"
     "msgid\0handleMessageDorient\0setRoll\0"
     "rollmsg\0setPitch\0pitchmsg\0setMaxroll\0"
     "maxrollmsg\0setMinroll\0minrollmsg\0"
-    "setPeriod\0periodmsg\0settestmin\0"
-    "testmin_msg\0settestmax\0updateTime\0"
+    "setPeakMaxText\0peakmaxmsgtext\0"
+    "setPeakMinText\0peakminmsgtext\0setPeriod\0"
+    "periodmsg\0settestmin\0testmin_msg\0"
+    "settestmax\0setPeakMin\0peak_min_msg\0"
+    "setPeakMax\0peak_max_msg\0updateTime\0"
     "testmax_msg\0MsgId\0DORIENT"
 };
 #undef QT_MOC_LITERAL
@@ -88,37 +104,45 @@ static const uint qt_meta_data_comport[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      21,   14, // methods
-       7,  162, // properties
-       1,  190, // enums/sets
+      29,   14, // methods
+      11,  218, // properties
+       1,  262, // enums/sets
        0,    0, // constructors
        0,       // flags
-      10,       // signalCount
+      14,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,  119,    2, 0x06 /* Public */,
-       3,    0,  120,    2, 0x06 /* Public */,
-       4,    0,  121,    2, 0x06 /* Public */,
-       5,    0,  122,    2, 0x06 /* Public */,
-       6,    0,  123,    2, 0x06 /* Public */,
-       7,    1,  124,    2, 0x06 /* Public */,
-       9,    1,  127,    2, 0x06 /* Public */,
-      10,    1,  130,    2, 0x06 /* Public */,
-      11,    0,  133,    2, 0x06 /* Public */,
-      12,    0,  134,    2, 0x06 /* Public */,
+       1,    0,  159,    2, 0x06 /* Public */,
+       3,    0,  160,    2, 0x06 /* Public */,
+       4,    0,  161,    2, 0x06 /* Public */,
+       5,    0,  162,    2, 0x06 /* Public */,
+       6,    0,  163,    2, 0x06 /* Public */,
+       7,    0,  164,    2, 0x06 /* Public */,
+       8,    0,  165,    2, 0x06 /* Public */,
+       9,    1,  166,    2, 0x06 /* Public */,
+      11,    1,  169,    2, 0x06 /* Public */,
+      12,    1,  172,    2, 0x06 /* Public */,
+      13,    0,  175,    2, 0x06 /* Public */,
+      14,    0,  176,    2, 0x06 /* Public */,
+      15,    0,  177,    2, 0x06 /* Public */,
+      16,    0,  178,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      13,    0,  135,    2, 0x08 /* Private */,
-      14,    1,  136,    2, 0x08 /* Private */,
-      16,    0,  139,    2, 0x08 /* Private */,
-      17,    1,  140,    2, 0x08 /* Private */,
-      19,    1,  143,    2, 0x08 /* Private */,
-      21,    1,  146,    2, 0x08 /* Private */,
-      23,    1,  149,    2, 0x08 /* Private */,
-      25,    1,  152,    2, 0x08 /* Private */,
-      27,    1,  155,    2, 0x08 /* Private */,
-      29,    1,  158,    2, 0x08 /* Private */,
-      30,    0,  161,    2, 0x08 /* Private */,
+      17,    0,  179,    2, 0x08 /* Private */,
+      18,    1,  180,    2, 0x08 /* Private */,
+      20,    0,  183,    2, 0x08 /* Private */,
+      21,    1,  184,    2, 0x08 /* Private */,
+      23,    1,  187,    2, 0x08 /* Private */,
+      25,    1,  190,    2, 0x08 /* Private */,
+      27,    1,  193,    2, 0x08 /* Private */,
+      29,    1,  196,    2, 0x08 /* Private */,
+      31,    1,  199,    2, 0x08 /* Private */,
+      33,    1,  202,    2, 0x08 /* Private */,
+      35,    1,  205,    2, 0x08 /* Private */,
+      37,    1,  208,    2, 0x08 /* Private */,
+      38,    1,  211,    2, 0x08 /* Private */,
+      40,    1,  214,    2, 0x08 /* Private */,
+      42,    0,  217,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -126,33 +150,45 @@ static const uint qt_meta_data_comport[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Double,    8,
-    QMetaType::Void, QMetaType::Double,    8,
-    QMetaType::Void, QMetaType::Double,    8,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Double,   10,
+    QMetaType::Void, QMetaType::Double,   10,
+    QMetaType::Void, QMetaType::Double,   10,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   15,
+    QMetaType::Void, QMetaType::Int,   19,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   18,
-    QMetaType::Void, QMetaType::QString,   20,
     QMetaType::Void, QMetaType::QString,   22,
     QMetaType::Void, QMetaType::QString,   24,
     QMetaType::Void, QMetaType::QString,   26,
-    QMetaType::Void, QMetaType::Double,   28,
-    QMetaType::Void, QMetaType::Double,   28,
+    QMetaType::Void, QMetaType::QString,   28,
+    QMetaType::Void, QMetaType::QString,   30,
+    QMetaType::Void, QMetaType::QString,   32,
+    QMetaType::Void, QMetaType::QString,   34,
+    QMetaType::Void, QMetaType::Double,   36,
+    QMetaType::Void, QMetaType::Double,   36,
+    QMetaType::Void, QMetaType::Double,   39,
+    QMetaType::Void, QMetaType::Double,   41,
     QMetaType::Void,
 
  // properties: name, type, flags
-      18, QMetaType::QString, 0x00495003,
-      20, QMetaType::QString, 0x00495003,
       22, QMetaType::QString, 0x00495003,
       24, QMetaType::QString, 0x00495003,
       26, QMetaType::QString, 0x00495003,
-      28, QMetaType::Double, 0x00495003,
-      31, QMetaType::Double, 0x00495003,
+      28, QMetaType::QString, 0x00495003,
+      30, QMetaType::QString, 0x00495003,
+      32, QMetaType::QString, 0x00495003,
+      34, QMetaType::QString, 0x00495003,
+      36, QMetaType::Double, 0x00495003,
+      43, QMetaType::Double, 0x00495003,
+      39, QMetaType::Double, 0x00495003,
+      41, QMetaType::Double, 0x00495003,
 
  // properties: notify_signal_id
        0,
@@ -160,14 +196,18 @@ static const uint qt_meta_data_comport[] = {
        2,
        3,
        4,
-       8,
-       9,
+       5,
+       6,
+      10,
+      11,
+      12,
+      13,
 
  // enums: name, alias, flags, count, data
-      32,   32, 0x0,    1,  195,
+      44,   44, 0x0,    1,  267,
 
  // enum data: key, value
-      33, uint(comport::DORIENT),
+      45, uint(comport::DORIENT),
 
        0        // eod
 };
@@ -182,23 +222,31 @@ void comport::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 1: _t->pitchChanged(); break;
         case 2: _t->maxRoll(); break;
         case 3: _t->minRoll(); break;
-        case 4: _t->periodChanged(); break;
-        case 5: _t->rotationUpdate((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 6: _t->maxRollChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 7: _t->minRollChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 8: _t->testmin(); break;
-        case 9: _t->testmax(); break;
-        case 10: _t->receiveMessageFromUSART(); break;
-        case 11: _t->defineMessageType((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 12: _t->handleMessageDorient(); break;
-        case 13: _t->setRoll((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 14: _t->setPitch((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 15: _t->setMaxroll((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 16: _t->setMinroll((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 17: _t->setPeriod((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 18: _t->settestmin((*reinterpret_cast< const double(*)>(_a[1]))); break;
-        case 19: _t->settestmax((*reinterpret_cast< const double(*)>(_a[1]))); break;
-        case 20: _t->updateTime(); break;
+        case 4: _t->maxPeakText(); break;
+        case 5: _t->minPeakText(); break;
+        case 6: _t->periodChanged(); break;
+        case 7: _t->rotationUpdate((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 8: _t->maxRollChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 9: _t->minRollChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 10: _t->testmin(); break;
+        case 11: _t->testmax(); break;
+        case 12: _t->peak_min(); break;
+        case 13: _t->peak_max(); break;
+        case 14: _t->receiveMessageFromUSART(); break;
+        case 15: _t->defineMessageType((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 16: _t->handleMessageDorient(); break;
+        case 17: _t->setRoll((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 18: _t->setPitch((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 19: _t->setMaxroll((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 20: _t->setMinroll((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 21: _t->setPeakMaxText((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 22: _t->setPeakMinText((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 23: _t->setPeriod((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 24: _t->settestmin((*reinterpret_cast< const double(*)>(_a[1]))); break;
+        case 25: _t->settestmax((*reinterpret_cast< const double(*)>(_a[1]))); break;
+        case 26: _t->setPeakMin((*reinterpret_cast< const double(*)>(_a[1]))); break;
+        case 27: _t->setPeakMax((*reinterpret_cast< const double(*)>(_a[1]))); break;
+        case 28: _t->updateTime(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -233,43 +281,71 @@ void comport::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         }
         {
             using _t = void (comport::*)();
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::periodChanged)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::maxPeakText)) {
                 *result = 4;
                 return;
             }
         }
         {
-            using _t = void (comport::*)(double );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::rotationUpdate)) {
+            using _t = void (comport::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::minPeakText)) {
                 *result = 5;
                 return;
             }
         }
         {
-            using _t = void (comport::*)(double );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::maxRollChanged)) {
+            using _t = void (comport::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::periodChanged)) {
                 *result = 6;
                 return;
             }
         }
         {
             using _t = void (comport::*)(double );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::minRollChanged)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::rotationUpdate)) {
                 *result = 7;
+                return;
+            }
+        }
+        {
+            using _t = void (comport::*)(double );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::maxRollChanged)) {
+                *result = 8;
+                return;
+            }
+        }
+        {
+            using _t = void (comport::*)(double );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::minRollChanged)) {
+                *result = 9;
                 return;
             }
         }
         {
             using _t = void (comport::*)();
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::testmin)) {
-                *result = 8;
+                *result = 10;
                 return;
             }
         }
         {
             using _t = void (comport::*)();
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::testmax)) {
-                *result = 9;
+                *result = 11;
+                return;
+            }
+        }
+        {
+            using _t = void (comport::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::peak_min)) {
+                *result = 12;
+                return;
+            }
+        }
+        {
+            using _t = void (comport::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&comport::peak_max)) {
+                *result = 13;
                 return;
             }
         }
@@ -284,9 +360,13 @@ void comport::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 1: *reinterpret_cast< QString*>(_v) = _t->pitchmsg(); break;
         case 2: *reinterpret_cast< QString*>(_v) = _t->maxrollmsg(); break;
         case 3: *reinterpret_cast< QString*>(_v) = _t->minrollmsg(); break;
-        case 4: *reinterpret_cast< QString*>(_v) = _t->periodmsg(); break;
-        case 5: *reinterpret_cast< double*>(_v) = _t->testmin_msg(); break;
-        case 6: *reinterpret_cast< double*>(_v) = _t->testmax_msg(); break;
+        case 4: *reinterpret_cast< QString*>(_v) = _t->peakmaxmsgtext(); break;
+        case 5: *reinterpret_cast< QString*>(_v) = _t->peakminmsgtext(); break;
+        case 6: *reinterpret_cast< QString*>(_v) = _t->periodmsg(); break;
+        case 7: *reinterpret_cast< double*>(_v) = _t->testmin_msg(); break;
+        case 8: *reinterpret_cast< double*>(_v) = _t->testmax_msg(); break;
+        case 9: *reinterpret_cast< double*>(_v) = _t->peak_min_msg(); break;
+        case 10: *reinterpret_cast< double*>(_v) = _t->peak_max_msg(); break;
         default: break;
         }
     } else if (_c == QMetaObject::WriteProperty) {
@@ -298,9 +378,13 @@ void comport::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 1: _t->setPitch(*reinterpret_cast< QString*>(_v)); break;
         case 2: _t->setMaxroll(*reinterpret_cast< QString*>(_v)); break;
         case 3: _t->setMinroll(*reinterpret_cast< QString*>(_v)); break;
-        case 4: _t->setPeriod(*reinterpret_cast< QString*>(_v)); break;
-        case 5: _t->settestmin(*reinterpret_cast< double*>(_v)); break;
-        case 6: _t->settestmax(*reinterpret_cast< double*>(_v)); break;
+        case 4: _t->setPeakMaxText(*reinterpret_cast< QString*>(_v)); break;
+        case 5: _t->setPeakMinText(*reinterpret_cast< QString*>(_v)); break;
+        case 6: _t->setPeriod(*reinterpret_cast< QString*>(_v)); break;
+        case 7: _t->settestmin(*reinterpret_cast< double*>(_v)); break;
+        case 8: _t->settestmax(*reinterpret_cast< double*>(_v)); break;
+        case 9: _t->setPeakMin(*reinterpret_cast< double*>(_v)); break;
+        case 10: _t->setPeakMax(*reinterpret_cast< double*>(_v)); break;
         default: break;
         }
     } else if (_c == QMetaObject::ResetProperty) {
@@ -337,29 +421,29 @@ int comport::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 21)
+        if (_id < 29)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 21;
+        _id -= 29;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 21)
+        if (_id < 29)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 21;
+        _id -= 29;
     }
 #ifndef QT_NO_PROPERTIES
     else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 11;
     } else if (_c == QMetaObject::QueryPropertyDesignable) {
-        _id -= 7;
+        _id -= 11;
     } else if (_c == QMetaObject::QueryPropertyScriptable) {
-        _id -= 7;
+        _id -= 11;
     } else if (_c == QMetaObject::QueryPropertyStored) {
-        _id -= 7;
+        _id -= 11;
     } else if (_c == QMetaObject::QueryPropertyEditable) {
-        _id -= 7;
+        _id -= 11;
     } else if (_c == QMetaObject::QueryPropertyUser) {
-        _id -= 7;
+        _id -= 11;
     }
 #endif // QT_NO_PROPERTIES
     return _id;
@@ -390,42 +474,66 @@ void comport::minRoll()
 }
 
 // SIGNAL 4
-void comport::periodChanged()
+void comport::maxPeakText()
 {
     QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
 }
 
 // SIGNAL 5
-void comport::rotationUpdate(double _t1)
+void comport::minPeakText()
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
-    QMetaObject::activate(this, &staticMetaObject, 5, _a);
+    QMetaObject::activate(this, &staticMetaObject, 5, nullptr);
 }
 
 // SIGNAL 6
-void comport::maxRollChanged(double _t1)
+void comport::periodChanged()
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
-    QMetaObject::activate(this, &staticMetaObject, 6, _a);
+    QMetaObject::activate(this, &staticMetaObject, 6, nullptr);
 }
 
 // SIGNAL 7
-void comport::minRollChanged(double _t1)
+void comport::rotationUpdate(double _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 7, _a);
 }
 
 // SIGNAL 8
-void comport::testmin()
+void comport::maxRollChanged(double _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 8, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 8, _a);
 }
 
 // SIGNAL 9
+void comport::minRollChanged(double _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 9, _a);
+}
+
+// SIGNAL 10
+void comport::testmin()
+{
+    QMetaObject::activate(this, &staticMetaObject, 10, nullptr);
+}
+
+// SIGNAL 11
 void comport::testmax()
 {
-    QMetaObject::activate(this, &staticMetaObject, 9, nullptr);
+    QMetaObject::activate(this, &staticMetaObject, 11, nullptr);
+}
+
+// SIGNAL 12
+void comport::peak_min()
+{
+    QMetaObject::activate(this, &staticMetaObject, 12, nullptr);
+}
+
+// SIGNAL 13
+void comport::peak_max()
+{
+    QMetaObject::activate(this, &staticMetaObject, 13, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

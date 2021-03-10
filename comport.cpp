@@ -71,6 +71,12 @@ QString comport::maxrollmsg() {
 QString comport::minrollmsg() {
     return m_minrollmsg;
 }
+QString comport::peakmaxmsgtext() {
+    return m_peakmaxmsgtext;
+}
+QString comport::peakminmsgtext() {
+    return m_peakminmsgtext;
+}
 QString comport::periodmsg() {
     return m_periodmsg;
 }
@@ -80,6 +86,12 @@ double comport::testmin_msg() {
 double comport::testmax_msg() {
     return m_testmax_msg;
 }
+double comport::peak_min_msg() {
+    return m_peak_min_roll;
+}
+double comport::peak_max_msg() {
+    return m_peak_max_roll;
+}
 void comport::updateTime() {
     static double rightBoard = 0;
     static double leftBoard = 0;
@@ -87,6 +99,9 @@ void comport::updateTime() {
     static double pmax_leftBoard;
     QString period;
 
+
+    /*qDebug() << rightBoardAlfa;
+    qDebug() << rightBoardSweep;*/
     if (p_right) {
         pmax_leftBoard = 0;
         rightBoard++;
@@ -106,7 +121,7 @@ void comport::updateTime() {
 
     setPeriod(period);
 
-    qDebug() << period;
+    //qDebug() << period;
     //qDebug() << pmax_leftBoard;
 
     //qDebug() << leftBoard;
@@ -188,6 +203,8 @@ void comport::handleMessageDorient()
     QString p_pitch;
     QString pmax_roll;
     QString pmin_roll;
+    QString p_peak_max_roll;
+    QString p_peak_min_roll;
     QByteArray data = m_message;
 
     if (data.size() < 18) {
@@ -195,18 +212,19 @@ void comport::handleMessageDorient()
         return;
     }
     double roll = QString::number((short)((data.at(1) << 8) + (data.at(0))) * K_ANG, 10, 1).toDouble();
+    angleForPeriod = roll;
     double pitch = QString::number((short)((data.at(3) << 8) + (data.at(2))) * K_ANG, 10, 1).toDouble();
-    double azimuth = QString::number((unsigned short)((data.at(5) << 8) + (data.at(4))) * K_ANG, 10, 1).toDouble();
+    //double azimuth = QString::number((unsigned short)((data.at(5) << 8) + (data.at(4))) * K_ANG, 10, 1).toDouble();
     //qDebug() << roll;
 
-    QList<double> res;
+    //QList<double> res;
 
     //QList<double> tabroll{1,2,3,4,500,100};
    /* QList<double> tabroll;
     tabroll.append(roll);*/
     //tabroll << roll;
 
-    res << roll << pitch << azimuth;
+    //res << roll << pitch << azimuth;
     p_pitch = QString::number(pitch, 'f', 1).rightJustified(4, '0');
     //p_roll = "---.-";
     if (roll >= 0.0) {
@@ -218,10 +236,15 @@ void comport::handleMessageDorient()
             max_roll = roll;
             pmax_roll = QString::number(max_roll, 'f', 1);
             settestmax(max_roll);
-            //qDebug() << pmax_roll;
             min_roll = 1.0;    /* KAK ETO RABOTAET???*/
             setMaxroll(pmax_roll);
             //emit maxRollChanged(max_roll);
+        }
+        if (peak_max_roll < roll) {
+            peak_max_roll = roll;
+            setPeakMax(peak_max_roll);
+            p_peak_max_roll = QString::number(peak_max_roll, 'f', 1);
+            setPeakMaxText(p_peak_max_roll);
         }
     } else {
         p_right = 0;
@@ -231,10 +254,15 @@ void comport::handleMessageDorient()
             min_roll = roll;
             pmin_roll = QString::number(min_roll, 'f', 1);
             settestmin(min_roll);
-            //qDebug() << pmin_roll;
             max_roll = 1.0;   /* KAK ETO RABOTAET???*/
             setMinroll(pmin_roll);
             //emit minRollChanged(min_roll);
+        }
+        if (peak_min_roll > roll) {
+            peak_min_roll = roll;
+            setPeakMin(peak_min_roll);
+            p_peak_min_roll = QString::number(peak_min_roll, 'f', 1);
+            setPeakMinText(p_peak_min_roll);
         }
     }
     //emit setMsg(p_roll);
@@ -276,6 +304,18 @@ void comport::setMinroll(const QString &minrollmsg) {
     m_minrollmsg = minrollmsg;
     emit minRoll();
 }
+void comport::setPeakMaxText(const QString &peakmaxmsgtext) {
+    if(m_peakmaxmsgtext == peakmaxmsgtext)
+        return;
+    m_peakmaxmsgtext = peakmaxmsgtext;
+    emit maxPeakText();
+}
+void comport::setPeakMinText(const QString &peakminmsgtext) {
+    if(m_peakminmsgtext == peakminmsgtext)
+        return;
+    m_peakminmsgtext = peakminmsgtext;
+    emit minPeakText();
+}
 void comport::setPeriod(const QString &periodmsg) {
     if(m_periodmsg == periodmsg)
         return;
@@ -293,4 +333,16 @@ void comport::settestmax(const double &testmax_msg) {
         return;
     m_testmax_msg = testmax_msg;
     emit testmax();
+}
+void comport::setPeakMin(const double &peak_min_msg) {
+    if(m_peak_min_roll == peak_min_msg)
+        return;
+    m_peak_min_roll = peak_min_msg;
+    emit peak_min();
+}
+void comport::setPeakMax(const double &peak_max_msg) {
+    if(m_peak_max_roll == peak_max_msg)
+        return;
+    m_peak_max_roll = peak_max_msg;
+    emit peak_max();
 }
