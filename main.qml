@@ -26,8 +26,8 @@ Window {
     }*/
     Image {
         id:scale
-        //x:-100; y:-160;
-        x:-250; y:-610;
+        //x:-250; y:-610;
+        x:-500; y:-850;
         source:"scale.png"
         Connections {
             target: comport
@@ -49,6 +49,16 @@ Window {
         }
     }
     Image {
+        id:shield
+        x:-500; y:-850;
+        source:"shield.png"
+    }
+    Image {
+        id:ampltest
+        x:-250; y:-600
+        source:"ampltest.png"
+    }
+    /*Image {
         id:ampllefthand
         x:-250; y:-610;
         source:"ampllefthand.png"
@@ -94,15 +104,16 @@ Window {
                 }
             }
         }
-    }
+    }*/
     Image {
         id:peaklefthand
-        x:-250; y:-610;
+        //x:-250; y:-610;
+        x:-500; y:-850;
         source:"peaklefthand.png"
         Connections {
             target: comport
             onRotationUpdate: {
-               rotationPeakMin.angle = angle - comport.peak_min_msg
+               rotationPeakMin.angle = angle - comport.testmin_msg
                 //console.log(angle)
             }
         }
@@ -121,12 +132,13 @@ Window {
     }
     Image {
         id:peakrighthand
-        x:-250; y:-610;
+        //x:-250; y:-610;
+        x:-500; y:-850;
         source:"peakrighthand.png"
         Connections {
             target: comport
             onRotationUpdate: {
-               rotationPeakMax.angle = angle - comport.peak_max_msg
+               rotationPeakMax.angle = angle - comport.testmax_msg
             }
         }
         transform: Rotation {
@@ -144,7 +156,8 @@ Window {
     }
     Image {
         id:handle
-        x:-250; y:-610
+        //x:-250; y:-610
+        x:-500; y:-850;
         source:"handle.png"
     }
     Image {
@@ -152,27 +165,17 @@ Window {
         x:-100; y:-360
         source:"indicators.png"
     }
-    Image {
-        id:ampl
-        x:-250; y:-600
-        source:"ampl.png"
-    }
-    Image {
-        id:charging
-        x:-250; y:-610
-        source:"charging.png"
-    }
+
     Text {
             id: textRoll
-            x: 300; y:390;
+            x: 320; y:500;
             text: comport.rollmsg
             style: Text.Raised
             font.family: batavia.name
-            font.pixelSize:80;
-            //color: "steelblue"
+            font.pixelSize:60;
             color: "#ffff00"
         }
-    Text {
+    /*Text {
             id: textPitch
             x: 370; y:547;
             text: comport.pitchmsg
@@ -181,10 +184,10 @@ Window {
             font.pixelSize:30;
             //color: "steelblue"
             color: "#ffffff"
-        }
+        }*/
     Text {
             id: angle
-            x: 460; y:380;
+            x: 440; y:490;
             text: "°"
             style: Text.Raised
             font.family: batavia.name
@@ -213,25 +216,25 @@ Window {
         }
     Text {
             id: textLeftAmpl
-            x: 35; y:100;
+            x: 35; y:350;
             text: comport.minrollmsg
             style: Text.Raised;
             font.family: batavia.name
             font.pixelSize:20;
             //color: "steelblue"
-            color: "#ffffff"
+            color: "#d40244"
         }
     Text {
             id: textRightAmpl
-            x: 730; y:100;
+            x: 730; y:350;
             text: comport.maxrollmsg
             style: Text.Raised;
             font.family: batavia.name
             font.pixelSize:20;
             //color: "steelblue"
-            color: "#ffffff"
+            color: "#01d444"
         }
-    Text {
+    /*Text {
             id: textLeftPeak
             x: 35; y:340;
             text: comport.peakminmsgtext
@@ -240,8 +243,8 @@ Window {
             font.pixelSize:20;
             //color: "steelblue"
             color: "#d40244"
-        }
-    Text {
+        }*/
+    /*Text {
             id: textRightPeak
             x: 730; y:340;
             text: comport.peakmaxmsgtext
@@ -250,5 +253,5 @@ Window {
             font.pixelSize:20;
             //color: "steelblue"
             color: "#01d444"
-        }
+        }*/
 }

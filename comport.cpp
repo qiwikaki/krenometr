@@ -18,15 +18,13 @@ const QByteArray comport::SOP2 = QByteArray::fromHex("0a");
 const QByteArray comport::SOP3 = QByteArray::fromHex("7e");
 
 const int comport::T_REQ = 1000;
-bool p_right;
-bool p_left;
 
 comport::comport(QObject *parent):
     QObject(parent)
 {
     QTimer *timer = new QTimer(this);
     timer->setInterval(1);
-    connect(timer, SIGNAL(timeout()), this, SLOT(updateTime()));
+    connect(timer, &QTimer::timeout, this, &comport::updateTime);
     timer->start();
 
     serial = new QSerialPort(PORT_NAME, this);
@@ -100,9 +98,7 @@ void comport::updateTime() {
     QString period;
 
 
-    /*qDebug() << rightBoardAlfa;
-    qDebug() << rightBoardSweep;*/
-    if (p_right) {
+    if (angleForPeriod >= 0) {
         pmax_leftBoard = 0;
         rightBoard++;
         if (pmax_rightBoard < rightBoard) {
@@ -110,7 +106,7 @@ void comport::updateTime() {
             period = QString::number(pmax_rightBoard/1000, 'f', 1);
         }
     } else rightBoard = 0;
-    if (p_left) {
+    if (angleForPeriod < 0) {
         pmax_rightBoard = 0;
         leftBoard++;
         if (pmax_leftBoard < leftBoard) {
@@ -213,7 +209,7 @@ void comport::handleMessageDorient()
     }
     double roll = QString::number((short)((data.at(1) << 8) + (data.at(0))) * K_ANG, 10, 1).toDouble();
     angleForPeriod = roll;
-    double pitch = QString::number((short)((data.at(3) << 8) + (data.at(2))) * K_ANG, 10, 1).toDouble();
+    //double pitch = QString::number((short)((data.at(3) << 8) + (data.at(2))) * K_ANG, 10, 1).toDouble();
     //double azimuth = QString::number((unsigned short)((data.at(5) << 8) + (data.at(4))) * K_ANG, 10, 1).toDouble();
     //qDebug() << roll;
 
@@ -225,11 +221,9 @@ void comport::handleMessageDorient()
     //tabroll << roll;
 
     //res << roll << pitch << azimuth;
-    p_pitch = QString::number(pitch, 'f', 1).rightJustified(4, '0');
+    //p_pitch = QString::number(pitch, 'f', 1).rightJustified(4, '0');
     //p_roll = "---.-";
     if (roll >= 0.0) {
-        p_right = 1;
-        p_left = 0;
         p_roll = QString::number(roll, 'f', 1).rightJustified(4, '0').leftJustified(5, '+');
         //qDebug() << max_roll;
         if (max_roll < roll) {
@@ -247,8 +241,6 @@ void comport::handleMessageDorient()
             setPeakMaxText(p_peak_max_roll);
         }
     } else {
-        p_right = 0;
-        p_left = 1;
         p_roll = QString::number(roll*(-1), 'f', 1).rightJustified(4,'0').rightJustified(5, '-');
         if (min_roll > roll) {
             min_roll = roll;
@@ -267,7 +259,7 @@ void comport::handleMessageDorient()
     }
     //emit setMsg(p_roll);
     setRoll(p_roll);
-    setPitch(p_pitch);
+    //setPitch(p_pitch);
     emit rotationUpdate(roll);
     //emit dataRecieved(res);
     //qDebug() << *std::max_element(tabroll.begin(),tabroll.end());

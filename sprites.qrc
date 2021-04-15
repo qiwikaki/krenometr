@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>ampl.png</file>
         <file>ampllefthand.png</file>
         <file>amplrighthand.png</file>
         <file>charging.png</file>
@@ -10,5 +9,8 @@
         <file>scale.png</file>
         <file>peaklefthand.png</file>
         <file>peakrighthand.png</file>
+        <file>shield.png</file>
+        <file>ampl(main).png</file>
+        <file>ampltest.png</file>
     </qresource>
 </RCC>
