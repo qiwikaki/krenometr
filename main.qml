@@ -49,6 +49,55 @@ Window {
         }
     }
     Image {
+        id:peaklefthand
+        //x:-250; y:-610;
+        x:-500; y:-850;
+        source:"peaklefthand.png"
+        Connections {
+            target: comport
+            onRotationUpdate: {
+               rotationPeakMin.angle = angle - comport.testmin_msg
+                //console.log(angle)
+            }
+        }
+        transform: Rotation {
+            id: rotationPeakMin
+            angle: 0
+            origin.x: scale.width / 2
+            origin.y: scale.height / 2
+            Behavior on angle {
+                SpringAnimation {
+                    spring: 2
+                    damping: 0.3
+                }
+            }
+        }
+    }
+    Image {
+        id:peakrighthand
+        //x:-250; y:-610;
+        x:-500; y:-850;
+        source:"peakrighthand.png"
+        Connections {
+            target: comport
+            onRotationUpdate: {
+               rotationPeakMax.angle = angle - comport.testmax_msg
+            }
+        }
+        transform: Rotation {
+            id: rotationPeakMax
+            angle: 0
+            origin.x: scale.width / 2
+            origin.y: scale.height / 2
+            Behavior on angle {
+                SpringAnimation {
+                    spring: 2
+                    damping: 0.3
+                }
+            }
+        }
+    }
+    Image {
         id:shield
         x:-500; y:-850;
         source:"shield.png"
@@ -105,55 +154,6 @@ Window {
             }
         }
     }*/
-    Image {
-        id:peaklefthand
-        //x:-250; y:-610;
-        x:-500; y:-850;
-        source:"peaklefthand.png"
-        Connections {
-            target: comport
-            onRotationUpdate: {
-               rotationPeakMin.angle = angle - comport.testmin_msg
-                //console.log(angle)
-            }
-        }
-        transform: Rotation {
-            id: rotationPeakMin
-            angle: 0
-            origin.x: scale.width / 2
-            origin.y: scale.height / 2
-            Behavior on angle {
-                SpringAnimation {
-                    spring: 2
-                    damping: 0.3
-                }
-            }
-        }
-    }
-    Image {
-        id:peakrighthand
-        //x:-250; y:-610;
-        x:-500; y:-850;
-        source:"peakrighthand.png"
-        Connections {
-            target: comport
-            onRotationUpdate: {
-               rotationPeakMax.angle = angle - comport.testmax_msg
-            }
-        }
-        transform: Rotation {
-            id: rotationPeakMax
-            angle: 0
-            origin.x: scale.width / 2
-            origin.y: scale.height / 2
-            Behavior on angle {
-                SpringAnimation {
-                    spring: 2
-                    damping: 0.3
-                }
-            }
-        }
-    }
     Image {
         id:handle
         //x:-250; y:-610
